@@ -1,42 +1,35 @@
-name: Build/Release
-
+name: 'Build/Release'
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
+  publish-tauri:
     strategy:
+      fail-fast: false
       matrix:
-        os: [macos-latest, windows-latest]
+        platform: [macos-latest, windows-latest]
 
+    runs-on: ${{ matrix.platform }}
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
 
-      - name: Install Dependencies
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: install frontend dependencies
         run: npm install
 
-      - name: Build App
-        run: npm run tauri build
+      - uses: tauri-apps/tauri-action@v0
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: App-${{ matrix.os }}
-          path: src-tauri/target/release/bundle/
-          if-no-files-found: error
+          # This will create a draft release, which is perfect for checking the artifacts.
+          # It won't publish it publicly.
+          releaseDraft: true
