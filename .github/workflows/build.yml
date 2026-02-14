@@ -23,7 +23,12 @@ jobs:
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
-      - name: remove package-lock.json
+      - name: remove package-lock.json on Windows
+        if: matrix.platform == 'windows-latest'
+        run: Remove-Item -Force package-lock.json
+
+      - name: remove package-lock.json on macOS
+        if: matrix.platform == 'macos-latest'
         run: rm -f package-lock.json
 
       - name: install frontend dependencies using yarn
