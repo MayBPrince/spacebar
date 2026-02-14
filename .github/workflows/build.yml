@@ -25,11 +25,9 @@ jobs:
 
       - name: install frontend dependencies
         run: npm install
-        working-directory: Spacebar # Run npm install in the correct directory
 
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          projectPath: Spacebar      # Point the action to the correct directory
           releaseDraft: true
