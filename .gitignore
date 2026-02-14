@@ -1,15 +1,28 @@
-node_modules
-dist
-dist-electron
-release
+
+# Rust target directory
+target/
+target_locked/
+Cargo.lock
+
+# Tauri build artifacts
+src-tauri/target/
+src-tauri/target_locked/
+
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+dist-electron/
+release/
+
+# IDE files
+.idea/
+.vscode/
+
+# Log files
 *.log
+
+# OS-specific files
 .DS_Store
-.env
-.env.local
-.vscode
-.idea
-build-artifacts
-temp
-out
-bin
-obj
+Thumbs.db
