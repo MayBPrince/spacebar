@@ -1,0 +1,52 @@
+{
+  "name": "spacebar",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Windows productivity drawer with clipboard manager, AI chat, web research, and more",
+  "main": "dist/index.html",
+  "scripts": {
+    "dev": "tauri dev",
+    "ui:dev": "npx vite",
+    "ui:build": "tsc && vite build",
+    "build": "tauri build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@notionhq/client": "^5.9.0",
+    "@supabase/supabase-js": "^2.95.3",
+    "@tauri-apps/api": "^2.0.0-rc",
+    "@tauri-apps/plugin-autostart": "^2.5.1",
+    "@tauri-apps/plugin-dialog": "^2.0.0-rc",
+    "@tauri-apps/plugin-global-shortcut": "^2.0.0-rc",
+    "@tauri-apps/plugin-shell": "^2.0.0-rc",
+    "@tauri-apps/plugin-store": "^2.0.0-rc",
+    "axios": "^1.6.5",
+    "cheerio": "^1.0.0-rc.12",
+    "framer-motion": "^10.18.0",
+    "lucide-react": "^0.312.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.10.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react-swc": "^4.2.3",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.33",
+    "prettier": "^3.2.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.4.11"
+  }
+}

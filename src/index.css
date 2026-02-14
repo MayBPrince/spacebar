@@ -1,0 +1,317 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ABC Favorit';
+  src: url('./assets/fonts/ABCFavorit-Medium-Trial.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+:root {
+  /* Default to dark theme - Crisp & Readable */
+  --drawer-bg: #000000;
+  --drawer-surface: #0a0a0a;
+  --drawer-surface-hover: #141414;
+  --drawer-border: #1a1a1a;
+  --drawer-text: #ffffff;
+  --drawer-text-muted: #8e8e93;
+  /* Brighter grey than a1a1aa for contrast */
+  --drawer-accent: #ffffff;
+  --drawer-accent-hover: #f2f2f7;
+  --drawer-assistant-bg: #0a0a0a;
+  --drawer-assistant-border: #1a1a1a;
+  --drawer-user-bg: #ffffff;
+  --drawer-user-text: #000000;
+}
+
+:root.light {
+  /* Light theme - High Contrast & Premium Feel */
+  --drawer-bg: #ffffff;
+  --drawer-surface: #f8f9fa;
+  --drawer-surface-hover: #f1f3f5;
+  --drawer-border: #e9ecef;
+  --drawer-text: #1a1a1a;
+  /* Deeper black for readability */
+  --drawer-text-muted: #495057;
+  /* Darker grey for readability */
+  --drawer-accent: #000000;
+  --drawer-accent-hover: #212529;
+  --drawer-assistant-bg: #ffffff;
+  --drawer-assistant-border: #f1f3f5;
+  --drawer-user-bg: #000000;
+  --drawer-user-text: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'ABC Favorit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--drawer-border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--drawer-text-muted);
+}
+
+/* Main drawer container */
+.drawer-container {
+  background: var(--drawer-bg);
+  border: 1px solid var(--drawer-border);
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+/* Header styles */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--drawer-border);
+}
+
+.drawer-logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--drawer-text);
+}
+
+/* Model selector */
+.model-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--drawer-surface);
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--drawer-text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.model-selector:hover {
+  background: var(--drawer-surface-hover);
+}
+
+/* Message styles */
+.message-user {
+  display: inline-block;
+  background: var(--drawer-user-bg);
+  color: var(--drawer-user-text);
+  padding: 10px 18px;
+  border-radius: 18px 18px 4px 18px;
+  font-size: 13px;
+  max-width: 90%;
+  font-weight: 500;
+}
+
+.message-assistant {
+  background: var(--drawer-assistant-bg);
+  color: var(--drawer-text);
+  padding: 16px 20px;
+  border-radius: 18px;
+  border: 1px solid var(--drawer-assistant-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Timestamp */
+.message-time {
+  font-size: 11px;
+  color: var(--drawer-text-muted);
+  margin-top: 4px;
+}
+
+/* Input area */
+.message-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--drawer-surface);
+  border-radius: 24px;
+  margin: 12px;
+}
+
+.message-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--drawer-text);
+}
+
+.message-input input::placeholder {
+  color: var(--drawer-text-muted);
+}
+
+/* Bottom tab bar */
+.tab-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid var(--drawer-border);
+  background: var(--drawer-bg);
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: var(--drawer-text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-item:hover {
+  background: var(--drawer-surface);
+  color: var(--drawer-text);
+}
+
+.tab-item.active {
+  background: var(--drawer-surface);
+  color: var(--drawer-accent);
+}
+
+/* Icon button */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--drawer-text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.icon-btn:hover {
+  background: var(--drawer-surface);
+  color: var(--drawer-text);
+}
+
+/* Markdown content styles */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.markdown-content p {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content code {
+  background: var(--drawer-surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.markdown-content pre {
+  background: var(--drawer-surface);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+
+.markdown-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* List item styles */
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.list-item:hover {
+  background: var(--drawer-surface);
+}
+
+/* Send button */
+.send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--drawer-user-bg);
+  color: var(--drawer-user-text);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.send-btn:hover {
+  opacity: 0.9;
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
