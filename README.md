@@ -6,14 +6,9 @@ Spacebar is a powerful productivity tool that gives you quick access to your cli
 
 **[Download for Free on Gumroad](https://princepen.gumroad.com/l/spacebar)**
 
-## Features
+## Feature
 
-- **🎯 Global Hotkey**: Toggle the drawer from anywhere with `Ctrl+Shift+Space`.
-- **📋 Clipboard Manager**: Automatically captures your clipboard history. Never lose a copied link or piece of text again.
-- **💬 AI Chat**: Integrated chat with support for multiple AI providers.
-- **🎨 Theming**: Comes with beautiful light and dark themes, and can also follow your system's theme.
-- **✨ Modern UI**: A clean, minimal, and beautiful user interface.
-
+- **🎯 Just One Global Hotkey**: Toggle the drawer with `Ctrl+Space`. and save your Idea
 ## How to Build from Source
 
 ### Prerequisites
