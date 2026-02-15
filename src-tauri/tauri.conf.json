@@ -47,9 +47,5 @@
       "minimumSystemVersion": "10.13"
     }
   },
-  "plugins": {
-    "autostart": {
-      "enable": true
-    }
-  }
+  "plugins": {}
 }
