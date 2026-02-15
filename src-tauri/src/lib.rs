@@ -45,7 +45,7 @@ pub fn run() {
             update_notion_page
         ])
         .setup(|app| {
-            let handle = app.handle();
+            let _handle = app.handle();
             
             // Initialize stores
             let settings_store = app.store("settings.json")?;

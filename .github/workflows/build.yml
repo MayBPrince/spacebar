@@ -28,11 +28,13 @@ jobs:
 
       - name: install frontend dependencies using yarn
         run: yarn install
+        working-directory: Spacebar # Corrected: Run yarn install in the Spacebar directory
 
-      - uses: tauri-apps/tauri-action@v0.4 # Use a specific, recent version of the action
+      - uses: tauri-apps/tauri-action@v0.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          projectPath: Spacebar      # Corrected: Point the action to the Spacebar directory
           tagName: app-v__VERSION__
           releaseName: 'App v__VERSION__'
           releaseBody: 'See the assets to download this version.'
