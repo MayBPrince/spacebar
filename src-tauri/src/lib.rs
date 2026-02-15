@@ -7,7 +7,8 @@ use tauri::{App, Manager, Wry};
 use tauri_plugin_autostart::MacosLauncher;
 use tauri_plugin_dialog::DialogExt;
 use tauri_plugin_global_shortcut::{GlobalShortcut, Shortcut};
-use tauri_plugin_shell::ShellExt;
+use tauri_plugin_notification::NotificationManager;
+use tauri_plugin_shell::{ShellExt, ShellManager};
 
 #[cfg(desktop)]
 fn main() {
@@ -19,6 +20,7 @@ fn main() {
     .plugin(tauri_plugin_global_shortcut::Builder::new().build())
     .plugin(tauri_plugin_dialog::init())
     .plugin(tauri_plugin_shell::init())
+    .plugin(tauri_plugin_notification::init())
     .invoke_handler(tauri::generate_handler![
       greet,
       save_window_state,
@@ -60,14 +62,12 @@ fn greet(name: &str) -> String {
 #[tauri::command]
 fn save_window_state(app: App<Wry>, state: String) {
   let _handle = app.handle();
-  // Save the state to a file or database
   println!("Rust: Saving window state: {}", state);
 }
 
 #[tauri::command]
 fn load_window_state(app: App<Wry>) -> String {
   let _handle = app.handle();
-  // Load the state from a file or database
   println!("Rust: Loading window state");
   "{}".to_string()
 }
@@ -75,22 +75,20 @@ fn load_window_state(app: App<Wry>) -> String {
 #[tauri::command]
 fn add_to_startup(app: App<Wry>) {
   let _handle = app.handle();
-  // Add the app to startup
   println!("Rust: Adding app to startup");
 }
 
 #[tauri::command]
 fn remove_from_startup(app: App<Wry>) {
   let _handle = app.handle();
-  // Remove the app from startup
   println!("Rust: Removing app from startup");
 }
 
 #[tauri::command]
 fn show_notification(app: App<Wry>, title: String, body: String) {
-  let _handle = app.handle();
   app
-    .notification()
+    .plugins(|manager| manager.get::<NotificationManager>())
+    .unwrap()
     .builder()
     .title(title)
     .body(body)
@@ -100,8 +98,10 @@ fn show_notification(app: App<Wry>, title: String, body: String) {
 
 #[tauri::command]
 fn open_url(app: App<Wry>, url: String) {
-  let _handle = app.handle();
-  app.shell().open(url, None).unwrap();
+    app.plugins(|manager| manager.get::<ShellManager>())
+        .unwrap()
+        .open(url, None)
+        .unwrap();
 }
 
 // Notion API Commands
