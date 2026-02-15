@@ -23,13 +23,8 @@ jobs:
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
 
-      - name: remove package-lock.json on Windows
-        if: matrix.platform == 'windows-latest'
-        run: Remove-Item -Force package-lock.json
-
-      - name: remove package-lock.json on macOS
-        if: matrix.platform == 'macos-latest'
-        run: rm -f package-lock.json
+      - name: remove package-lock.json if it exists
+        run: rm -f package-lock.json || true
 
       - name: install frontend dependencies using yarn
         run: yarn install
@@ -43,11 +38,3 @@ jobs:
           releaseBody: 'See the assets to download this version.'
           releaseDraft: true
           prerelease: false
-          includeUpdaterJson: false # Set to true if you want to use the updater.
-          tauriScript: 'tauri'
-          args: 'build'
-          artifacts: '[
-              {"path": "src-tauri/target/release/bundle/msi/*.msi", "assetName": "${{ matrix.os }}-installer.msi"},
-              {"path": "src-tauri/target/release/bundle/dmg/*.dmg", "assetName": "${{ matrix.os }}-installer.dmg"},
-              {"path": "src-tauri/target/release/bundle/app/*.app.tar.gz", "assetName": "${{ matrix.os }}-app.tar.gz"}
-            ]'
