@@ -1,6 +1,6 @@
 # Spacebar
 
-**A sleek, modern, and open-source productivity drawer for Windows.**
+**A sleek, modern, and open-source productivity drawer for Windows & Mac.**
 <img width="2540" height="1440" alt="Frame 7 (1)" src="https://github.com/user-attachments/assets/1452b78e-d527-4f62-aad3-4a5d7895647c" />
 
 
