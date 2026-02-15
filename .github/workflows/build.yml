@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+# This is necessary to allow the tauri-action to create a draft release.
+permissions:
+  contents: write
+
 jobs:
   publish-tauri:
     strategy:
@@ -24,7 +28,11 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: remove package-lock.json if it exists
-        run: rm -f package-lock.json || true
+        run: |
+          if (Test-Path package-lock.json) {
+            Remove-Item package-lock.json
+          }
+        shell: pwsh
 
       - name: install frontend dependencies using yarn
         run: yarn install
@@ -33,7 +41,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__ # tauri-action replaces __VERSION__ with the app version.
+          tagName: app-v__VERSION__
           releaseName: 'App v__VERSION__'
           releaseBody: 'See the assets to download this version.'
           releaseDraft: true
