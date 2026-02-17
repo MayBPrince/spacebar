@@ -7,7 +7,7 @@ Cargo.lock
 # Tauri build artifacts
 src-tauri/target/
 src-tauri/target_locked/
-
+up
 # Node.js dependencies
 node_modules/
 
