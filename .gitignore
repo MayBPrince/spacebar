@@ -7,7 +7,7 @@ Cargo.lock
 # Tauri build artifacts
 src-tauri/target/
 src-tauri/target_locked/
-
+up
 # Node.js dependencies
 node_modules/
 
@@ -23,6 +23,6 @@ release/
 # Log files
 *.log
 
-# OS-specific files
+# O S-specific files
 .DS_Store
 Thumbs.db
