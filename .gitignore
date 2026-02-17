@@ -23,6 +23,6 @@ release/
 # Log files
 *.log
 
-# OS-specific files
+# O S-specific files
 .DS_Store
 Thumbs.db
